@@ -9,12 +9,16 @@ int main()
 	FPNode *a4 = new FPNode;
 	a1->count = 2;
 	a1->item_id = 0;
+	a1->child = new vector<FPNode*>;
 	a2->item_id = 1;
 	a2->count = 5;
+	a2->child = new vector<FPNode*>;
 	a3->item_id = 2;
 	a3->count = 3;
+	a3->child = new vector<FPNode*>;
 	a4->item_id = 3;
 	a4->count = 9;
+	a4->child = new vector<FPNode*>;
 	tree->add_large1(0, a1);
 	tree->add_large1(1, a2);
 	tree->add_large1(2, a3);
@@ -42,8 +46,10 @@ int main()
 	for (int i = 0; i < sTrans2.size(); i++)
 		cout << sTrans2[i] << "  ";
 
-	tree->addNode(sTrans, tree->root, 0);
-	tree->addNode(sTrans2, tree->root, 0);
+	tree->addNode(sTrans, tree->getroot(), 0);
+	tree->addNode(sTrans2, tree->getroot(), 0);
+
+
 	getchar();
 	return 0;
 }

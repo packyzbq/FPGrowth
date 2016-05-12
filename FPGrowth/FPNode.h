@@ -9,7 +9,7 @@ struct FPNode
 	int count;
 	FPNode *father;
 	//FPNode *next;
-	std::vector<FPNode*> child;
+	std::vector<FPNode*> *child;
 
 	bool operator < (const FPNode & other) const
 	{

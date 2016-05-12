@@ -79,12 +79,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DBoperator.h" />
-    <ClInclude Include="DBtree.h" />
+    <ClInclude Include="CDBtree.h" />
     <ClInclude Include="FPNode.h" />
     <ClInclude Include="FPTree.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DBtree.cpp" />
+    <ClCompile Include="CDBtree.cpp" />
     <ClCompile Include="FPTree.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

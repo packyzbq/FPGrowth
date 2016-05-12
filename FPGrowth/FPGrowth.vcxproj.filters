@@ -21,10 +21,10 @@
     <ClInclude Include="FPTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DBtree.h">
+    <ClInclude Include="DBoperator.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DBoperator.h">
+    <ClInclude Include="CDBtree.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DBtree.cpp">
+    <ClCompile Include="CDBtree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

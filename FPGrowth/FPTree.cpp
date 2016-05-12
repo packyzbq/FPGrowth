@@ -4,6 +4,10 @@
 FPTree::FPTree(int min_sup)
 {
 	root = new FPNode;
+	root->child = new vector<FPNode*>;
+	root->father = NULL;
+	root->count = NULL;
+	root->item_id = NULL;
 	this->min_sup = min_sup;
 }
 
@@ -65,24 +69,30 @@ void FPTree::addNode(vector<int> trans, FPNode* father, int current)
 	if (current >= size_trans)
 		return;
 	FPNode* tmpNode = NULL;
-	for (vector<FPNode*>::iterator child_iter = father->child.begin(); child_iter != father->child.end(); child_iter++)
+	if (father->child->size() != 0)
 	{
-		if ((*(child_iter._Ptr))->item_id == trans[current])
+		vector<FPNode*>::iterator child_iter = father->child->begin();
+		for (; child_iter != father->child->end(); child_iter++)
 		{
-			tmpNode = *(child_iter._Ptr);
-			tmpNode->count++;
-			break;
+			if ((*(child_iter._Ptr))->item_id == trans[current])
+			{
+				tmpNode = *(child_iter._Ptr);
+				tmpNode->count++;
+				break;
+			}
 		}
 	}
+	
 	//没有存在已存在的节点
-	if (tmpNode == NULL)
+	else if (tmpNode == NULL)
 	{
 		tmpNode = new FPNode;
 		tmpNode->item_id = trans[current];
 		tmpNode->father = father;
 		tmpNode->count = 1;
-		father->child.push_back(tmpNode);
-		large_1[trans[current]]->child.push_back(tmpNode);
+		tmpNode->child = new vector<FPNode*>;
+		father->child->push_back(tmpNode);
+		large_1[trans[current]]->child->push_back(tmpNode);
 	}
 	//递归调用添加节点
 	addNode(trans, tmpNode, ++current);	
@@ -100,4 +110,18 @@ void FPTree::createTree()
 	}
 	sortPattern(curr_trans, sorted_trans);
 	addNode(sorted_trans, root, 0);
+}
+
+
+FPNode* FPTree::getroot()
+{
+	return root;
+}
+map<int, FPNode*> FPTree::getLarge_1()
+{
+	return large_1;
+}
+int FPTree::get_minsup()
+{
+	return min_sup;
 }
