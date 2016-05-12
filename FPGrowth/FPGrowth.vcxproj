@@ -78,10 +78,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DBtree.h" />
     <ClInclude Include="FPNode.h" />
     <ClInclude Include="FPTree.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DBtree.cpp" />
     <ClCompile Include="FPTree.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
