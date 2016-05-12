@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DBoperator.h" />
     <ClInclude Include="DBtree.h" />
     <ClInclude Include="FPNode.h" />
     <ClInclude Include="FPTree.h" />

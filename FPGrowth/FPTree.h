@@ -15,16 +15,20 @@ using namespace std;
 class FPTree
 {
 public:
-	FPTree();
+	FPNode* root;
+
+	FPTree(int);
 	~FPTree();
-	void addNode();
+	void addNode(vector<int>, FPNode*, int);
 	void createTree();
 	void add_large1(int, FPNode*);
 	void sortPattern(vector<int> Trans, vector<int> &sortedTrans);
+	void OutputTree();
 
 private:
 	map<int,FPNode*> large_1; //ÅÅºÃÐòµÄ1-itemset
-	FPNode* root;
+	
+	int min_sup;
 
 	
 	

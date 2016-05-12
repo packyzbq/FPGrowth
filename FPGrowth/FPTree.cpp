@@ -1,8 +1,10 @@
 #include "FPTree.h"
+#include "DBoperator.h"
 
-
-FPTree::FPTree()
+FPTree::FPTree(int min_sup)
 {
+	root = new FPNode;
+	this->min_sup = min_sup;
 }
 
 
@@ -50,4 +52,52 @@ void FPTree::sortPattern(vector<int> Trans, vector<int> &sortedTrans)
 	{
 		sortedTrans.push_back(tmpTrans[i]->id);
 	}
+}
+
+//以trans为单位，加入到树中
+//paramter:
+//	trans: 所需加入的trans
+//	father: 加入的父节点
+//	int: 当前所处理的脚标
+void FPTree::addNode(vector<int> trans, FPNode* father, int current)
+{
+	int size_trans = trans.size();
+	if (current >= size_trans)
+		return;
+	FPNode* tmpNode = NULL;
+	for (vector<FPNode*>::iterator child_iter = father->child.begin(); child_iter != father->child.end(); child_iter++)
+	{
+		if ((*(child_iter._Ptr))->item_id == trans[current])
+		{
+			tmpNode = *(child_iter._Ptr);
+			tmpNode->count++;
+			break;
+		}
+	}
+	//没有存在已存在的节点
+	if (tmpNode == NULL)
+	{
+		tmpNode = new FPNode;
+		tmpNode->item_id = trans[current];
+		tmpNode->father = father;
+		tmpNode->count = 1;
+		father->child.push_back(tmpNode);
+		large_1[trans[current]]->child.push_back(tmpNode);
+	}
+	//递归调用添加节点
+	addNode(trans, tmpNode, ++current);	
+}
+
+//建树
+void FPTree::createTree()
+{
+	vector<int> curr_trans;
+	vector<int> sorted_trans;
+	int rowSize = getRowSize();
+	for (int i = 0; i < rowSize; i++)
+	{
+		getRowTrans(i, curr_trans);
+	}
+	sortPattern(curr_trans, sorted_trans);
+	addNode(sorted_trans, root, 0);
 }
